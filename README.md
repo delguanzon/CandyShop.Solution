@@ -1,4 +1,4 @@
-#  Pierre's Bake Shop
+#  Pierre's Sweet and Savory Treats
 
 #### By Yodel Guanzon <yodelguanzon@gmail.com>
 
@@ -8,25 +8,53 @@
 
 * .Net 6 SDK
 * C#
-* EF Core
+* EF Core 6.0
 * ASP.Net MVC
 * Razor
 * MySql 6
 
 ## Description
 
-Pierre was so pleased with your console app for his bakery that he wants to hire you for a new project. This time, he would like you to build him an MVC application to help him track the vendors that purchase baked goods from him and the orders belonging to those vendors.
+Pierre is back! He wants you to create a new application to market his sweet and savory treats. This time, he would like you to build an application with user authentication and a many-to-many relationship. Here are the features he wants in the application:
 
-For example, Pierre might supply croissants to a vendor called "Suzie's Cafe" once a week. Pierre may want to create a new Vendor to represent the cafe and add new Orders to it to help keep track of his expanding business relationships.
+* The application should have user authentication. A user should be able to log in and log out. Only logged in users should have create, update, and delete functionality. All users should be able to have read functionality.
+* There should be a many-to-many relationship between Treats and Flavors. A treat can have many flavors (such as sweet, savory, spicy, or creamy) and a flavor can have many treats. For instance, the "sweet" flavor could include chocolate croissants, cheesecake, and so on.
+* A user should be able to navigate to a splash page that lists all treats and flavors. Users should be able to click on an individual treat or flavor to see all the treats/flavors that belong to it.
 
 ## Setup/Installation Requirements
 
-* Clone this repository on your desktop
-* Navigate to the main project located in ../BakerySeller.Solution/BakerySeller using bash or cmd
+### Install Database Tools
+* Download and install MySQL Community Server and MySQL Workbench using the following link: (https://downloads.mysql.com/archives/get/p/25/file/mysql-installer-web-community-8.0.19.0.msi)
+
+### Creating appsettings.json for Database Connection Setup
+* Using a text editor, create a file. Paste the following code, replacing the USERNAME, PASSWORD with your own information. Make sure to also remove the enclosing braces.
+
+```
+{
+  "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=candyshop;uid=[USERNAME];pwd=[PASSWORD];",
+      "TestConnection": "Server=localhost;Port=3306;database=candyshop;uid=[USERNAME];pwd=[PASSWORD];"
+      
+  }
+}
+```
+
+* Save the file as ```appsettings.json``` under the project directory located at ../CandyShop.Solution/CandyShop.
+
+### Building the Database
+
+* Using the terminal, Navigate to the main project directory located at ../CandyShop.Solution/CandyShop
+* Run ```dotnet restore``` to restore all dependencies (optional)
+* Run ```dotnet ef database update``` command to automatically create the database using the migrations in the CandyShop Project
+       - Optionally, you could run the command `dotnet ef migrations add MigrationName` where `MigrationName` is your custom name for the migration to create your own migration before running the database update command. You could do this if for some reason ../CandyShop.Solution/CandyShop/Migrations is missing.
+
+### Running the project
+
+* Navigate to the main project located in ../CandyShop.Solution/CandyShop using bash or cmd
 * Use ``` dotnet restore ``` to install/restore dependencies.
 * For Building, use ```dotnet build```
-* For running the console application, use ```dotnet run```
-* For Testing, navigate to ../BakerySeller.Solution/Bakery.Tests and use ```dotnet test```.
+* For running the console application with a watcher, use ```dotnet watcher run```
+* After running the project, you can also open the webapp using your browser manually using the following url (https://localhost:5001/) or (http://localhost:5000/)
 
 ## Known Bugs
 
@@ -56,5 +84,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Copyright (c) 12/16/2022 Yodel Guanzon
+Copyright (c) 01/13/2023 Yodel Guanzon
 
