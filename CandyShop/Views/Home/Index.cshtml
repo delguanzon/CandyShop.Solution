@@ -2,6 +2,51 @@
   Layout = "_Layout";
 }
 
-<h1>Welcome to the Candy Shop!</h1>
-<h3>@Html.ActionLink("See all items", "Index", "Items")</h3>
+
+@using CandyShop.Models;
+@using CandyShop.ViewModels;
+@model ListAllViewModel;
+
+<div class="d-flex">
+  <div class="w-50">
+    <h2>Engineers</h2>
+    <ul>
+
+      @foreach (Flavor flavor in Model.Flavors)
+      {
+        <li>
+          @Html.ActionLink(flavor.Name, "Details", "Engineers", new { id = flavor.FlavorId }, null)
+        </li>
+      }
+    </ul>
+    @if (Model.Flavors.Count == 0)
+    {
+      @Html.ActionLink("No Flavors Available. Click to Add", "Create", "Flavors")
+    }
+    else
+    {
+      @Html.ActionLink("See all Flavors", "Index", "Flavors")
+    }
+
+  </div>
+  <div class="w-50">
+    <h2>Machines</h2>
+    <ul>
+      @foreach (Treat treat in Model.Treats)
+      {
+        <li>
+          @Html.ActionLink(treat.Name, "Details", "Treats", new { id = treat.TreatId }, null)
+        </li>
+      }
+      @if (Model.Treats.Count == 0)
+      {
+        @Html.ActionLink("No Treats Available. Click to Add", "Create", "Treats")
+      }
+      else
+      {
+        @Html.ActionLink("See all Treats", "Index", "Treats")
+      }
+    </ul>    
+  </div>
+</div>
 <p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>

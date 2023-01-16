@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CandyShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CandyShop.Controllers
 {
+
+    [Authorize]
     public class FlavorsController: Controller
     {
         private readonly CandyShopContext _db;
