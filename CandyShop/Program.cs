@@ -20,7 +20,7 @@ namespace CandyShop
                                                                           ));
 
 
-      builder.Service.AddIdentity<ApplicationUser, IdentityRole>()
+      builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<CandyShopContext>()
         .AddDefaultTokenProviders();
       WebApplication app = builder.Build();
