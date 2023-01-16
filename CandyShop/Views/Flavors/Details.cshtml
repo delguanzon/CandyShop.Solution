@@ -7,17 +7,21 @@
 
 <h2>Flavor Details</h2>
 <h4>Flavor Name: @Html.DisplayFor(model => model.Name)</h4>
-<h5>Description: @Html.DisplayFor(model => model.Description)</h4>
+<h5>Description:</h5> @if(Model.Description == null)
+  {
+    <span><em>No description available</em></span>
+  }
+  @Html.DisplayFor(model => model.Description)
 <hr />
 
 <div>
+  <h5>Treats under this Flavor Profile:</h5>
   @if(Model.JoinEntities.Count == 0)
   {
-    <h5>No Treats Found under this Flavor Profile</h5>
+    <span><em>No Treats Found under this Flavor Profile</em></span>
   }
   else
   {
-    <h5>Treats under this Flavor Profile:</h5>
     <ul>
       @foreach (var join in Model.JoinEntities)
       {
@@ -28,4 +32,9 @@
     </ul>
   }
 </div>
+<hr />
+<p>@Html.ActionLink("Add Treats to this Flavor", "AddTreat", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Edit Flavor Details", "Edit", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>
+
 

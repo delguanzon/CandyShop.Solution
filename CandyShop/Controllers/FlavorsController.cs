@@ -60,6 +60,7 @@ namespace CandyShop.Controllers
             return View(thisFlavor);
         }
 
+        [HttpPost]
         public ActionResult Edit(Flavor flavor)
         {
             if(!ModelState.IsValid)
@@ -72,6 +73,21 @@ namespace CandyShop.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Details", new { id = flavor.FlavorId });
             }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+            return View(thisFlavor);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+            _db.Flavors.Remove(thisFlavor);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }
