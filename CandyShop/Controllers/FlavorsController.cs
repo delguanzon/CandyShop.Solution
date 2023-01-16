@@ -46,6 +46,7 @@ namespace CandyShop.Controllers
             
         }
 
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             Flavor thisFlavor = _db.Flavors

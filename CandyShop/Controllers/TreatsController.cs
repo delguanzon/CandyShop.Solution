@@ -45,6 +45,7 @@ namespace CandyShop.Controllers
             
         }
 
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             Treat thisTreat = _db.Treats
