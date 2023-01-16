@@ -93,7 +93,7 @@ namespace CandyShop.Controllers
         public ActionResult AddTreat(int id)
         {
             Flavor thisFlavor = _db.Flavors.FirstOrDefault(Flavor => Flavor.FlavorId == id);
-            ViewBag.MachineId = new SelectList(_db.Treats, "TreatId", "Name");
+            ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
             return View(thisFlavor);
         }
 
