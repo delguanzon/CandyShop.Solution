@@ -10,7 +10,7 @@ namespace CandyShop.Models
     [Required(ErrorMessage = "Flavor Name can't be empty!")]
     public string Name { get; set; }
     public string Description { get; set; }
-    public List<FlavorTreat> Treats { get; set; }
+    public List<FlavorTreat> JoinEntities { get; set; }
     
   }
 }

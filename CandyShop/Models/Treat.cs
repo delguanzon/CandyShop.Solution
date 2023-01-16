@@ -12,7 +12,7 @@ namespace CandyShop.Models
     public string Name { get; set; }
     public string Description { get; set; }    
     public int Price { get; set; }
-    public List<FlavorTreat> Flavors { get; set; }
+    public List<FlavorTreat> JoinEntities { get; set; }
 
   }
 }

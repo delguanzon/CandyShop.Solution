@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+@using CandyShop.Models;
+@model CandyShop.Models.Flavor;
+
+<h2>Flavor Details</h2>
+<h4>Flavor Name: @Html.DisplayFor(model => model.Name)</h4>
+<h5>Description: @Html.DisplayFor(model => model.Description)</h4>
+<hr />
+
+<div>
+  @if(Model.JoinEntities.Count == 0)
+  {
+    <h5>No Treats Found under this Flavor Profile</h5>
+  }
+  else
+  {
+    <h5>Treats under this Flavor Profile:</h5>
+    <ul>
+      @foreach (var join in Model.JoinEntities)
+      {
+        <li>
+          @Html.DisplayFor(modelItem => join.Treat.Name)
+        </li>
+      }
+    </ul>
+  }
+</div>
+
