@@ -4,7 +4,10 @@ namespace CandyShop.Models
   {
     // properties, constructors, methods, etc. go here    
     public int FlavorId { get; set; }
-    public string Description { get; set; }
+    [Required(ErrorMessage = "Flavor Name can't be empty!")]
     public string Name { get; set; }
+    public string Description { get; set; }
+    public List<FlavorTreat> Treats { get; set; }
+    
   }
 }
