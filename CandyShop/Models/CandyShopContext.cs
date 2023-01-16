@@ -22,7 +22,7 @@ namespace CandyShop.Models
 
         //Database tables go here
         public DbSet<CandyShop.Models.Treat> Treats { get; set; }
-        public DbSet<CandyShop.Models.Treat> Flavors { get; set; }
+        public DbSet<CandyShop.Models.Flavor> Flavors { get; set; }
         public DbSet<CandyShop.Models.FlavorTreat> FlavorTreats { get; set; }
     }
 }
