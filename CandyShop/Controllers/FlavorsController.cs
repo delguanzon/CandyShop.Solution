@@ -90,5 +90,25 @@ namespace CandyShop.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult AddTreat(int id)
+        {
+            Flavor thisFlavor = _db.Flavors.FirstOrDefault(Flavor => Flavor.FlavorId == id);
+            ViewBag.MachineId = new SelectList(_db.Treats, "TreatId", "Name");
+            return View(thisFlavor);
+        }
+
+        [HttpPost]
+        public ActionResult AddTreat(Flavor flavor, int treatId)
+        {
+            #nullable enable
+            FlavorTreat? joinEntity = _db.FlavorTreats.FirstOrDefault(join => (join.TreatId == treatId && join.FlavorId == flavor.FlavorId));
+            #nullable disable
+            if (joinEntity == null && treatId != 0)
+            {
+                _db.FlavorTreats.Add(new FlavorTreat() { TreatId = treatId, FlavorId = flavor.FlavorId });
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Details", new { id = flavor.FlavorId });
+        }
     }
 }
