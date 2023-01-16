@@ -20,6 +20,7 @@ namespace CandyShop.Controllers
             _db = db;
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             List<Flavor> model = _db.Flavors.ToList();
