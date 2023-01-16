@@ -31,9 +31,16 @@ namespace CandyShop.Controllers
         [HttpPost]
         public ActionResult Create(Flavor flavor)
         {
-            _db.Flavors.Add(flavor);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if(!ModelState.IsValid)
+            {
+                return View(flavor);
+            }
+            {
+                _db.Flavors.Add(flavor);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            
         }
 
         public ActionResult Details(int id)
@@ -44,7 +51,28 @@ namespace CandyShop.Controllers
                 .FirstOrDefault(flavor => flavor.FlavorId == id);
             return View(thisFlavor);
         }
+        public ActionResult Edit(int id)
+        {
+            Flavor thisFlavor = _db.Flavors
+                .Include(flavor => flavor.JoinEntities)
+                .ThenInclude(join => join.Treat)
+                .FirstOrDefault(flavor => flavor.FlavorId == id);
+            return View(thisFlavor);
+        }
 
+        public ActionResult Edit(Flavor flavor)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(flavor);
+            }
+            else 
+            {
+                _db.Flavors.Update(flavor);
+                _db.SaveChanges();
+                return RedirectToAction("Details", new { id = flavor.FlavorId });
+            }
+        }
 
     }
 }

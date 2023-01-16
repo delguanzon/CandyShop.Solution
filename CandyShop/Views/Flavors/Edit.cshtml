@@ -4,7 +4,7 @@
 
 @model CandyShop.Models.Flavor
 
-<h4> Add a New Flavor</h4>
+<h4> Edit Flavor</h4>
 <p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 <p>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 @using (Html.BeginForm()) 
@@ -16,7 +16,6 @@
     @Html.TextBoxFor(model => model.Description, new { @class="form-control" })
     <input type="submit" value="Save" />
   </div>
+    
 }
-
-
 <p>@Html.ActionLink("Show all Flavors", "Index")</p>
