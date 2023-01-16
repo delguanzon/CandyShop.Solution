@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace ProjectName.Models
+namespace CandyShop.Models
 {   
     // This class is a "database context" class we will use to allow Entity Framework to communicate with our MySQL database.
     // The "ProjectNameContext" class represents a session with our MySQL database allowing us to query for data.
@@ -13,14 +13,16 @@ namespace ProjectName.Models
     // The "ProjectNameContext" class inherits from the "DbContext" class provided by Entity Framework Core.
     // The "DbContext" class provides a "DbSet" property, which we will use to communicate with our MySQL database.
     // The "ProjectNameContext" class requires a constructor method to build an instance of "DbContextOptions".
-    public class ProjectNameContext : DbContext
+    public class CandyShopContext : DbContext
     {
-        public ProjectNameContext (DbContextOptions<ProjectNameContext> options)
+        public CandyShopContext (DbContextOptions<CandyShopContext> options)
             : base(options)
         {
         }
 
         //Database tables go here
-        public DbSet<ProjectName.Models.ClassName> ClassNames { get; set; }
+        public DbSet<CandyShop.Models.Treat> Treats { get; set; }
+        public DbSet<CandyShop.Models.Treat> Flavors { get; set; }
+        public DbSet<CandyShop.Models.FlavorTreat> FlavorTreats { get; set; }
     }
 }
