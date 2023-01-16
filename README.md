@@ -8,10 +8,13 @@
 
 * .Net 6 SDK
 * C#
-* EF Core 6.0
+* EF Core 6
+* EF Core Migrations
+* EF Core Identity
 * ASP.Net MVC
 * Razor
 * MySql 6
+* MySql Workbench
 
 ## Description
 
