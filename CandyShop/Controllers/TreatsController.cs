@@ -51,7 +51,7 @@ namespace CandyShop.Controllers
         {
             Treat thisTreat = _db.Treats
                 .Include(treat => treat.JoinEntities)
-                .ThenInclude(join => join.Treat)
+                .ThenInclude(join => join.Flavor)
                 .FirstOrDefault(treat => treat.TreatId == id);
             return View(thisTreat);
         }
@@ -59,7 +59,7 @@ namespace CandyShop.Controllers
         {
             Treat thisTreat = _db.Treats
                 .Include(treat => treat.JoinEntities)
-                .ThenInclude(join => join.Treat)
+                .ThenInclude(join => join.Flavor)
                 .FirstOrDefault(treat => treat.TreatId == id);
             return View(thisTreat);
         }
@@ -114,6 +114,16 @@ namespace CandyShop.Controllers
             }
             return RedirectToAction("Details", new { id = treat.TreatId });
         }
+
+        public ActionResult DeleteJoin(int joinId)
+        {
+            
+            FlavorTreat joinEntry = _db.FlavorTreats.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
+            int treatId = joinEntry.TreatId;
+            _db.FlavorTreats.Remove(joinEntry);
+            _db.SaveChanges();
+            return RedirectToAction("Details", new { id = treatId });
+        } 
 
     }
 }

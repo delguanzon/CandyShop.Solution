@@ -26,15 +26,24 @@
       @foreach (var join in Model.JoinEntities)
       {
         <li>
-          @Html.DisplayFor(modelItem => join.Treat.Name)
+          @Html.DisplayFor(modelItem => join.Treat.Name) -
+          @Html.ActionLink("Delete", "DeleteJoin", new { joinId = join.FlavorTreatId })
         </li>
+        
       }
     </ul>
   }
 </div>
 <hr />
-<p>@Html.ActionLink("Add Treats to this Flavor", "AddTreat", new { id = Model.FlavorId })</p>
-<p>@Html.ActionLink("Edit Flavor Details", "Edit", new { id = Model.FlavorId })</p>
-<p>@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>
+@if (User.Identity.IsAuthenticated)
+{
+  <p>@Html.ActionLink("Add Treats to this Flavor", "AddTreat", new { id = Model.FlavorId })</p>
+  <p>@Html.ActionLink("Edit Flavor Details", "Edit", new { id = Model.FlavorId })</p>
+  <p>@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>
+}
+else 
+{
+  <p>Login to manage flavor profile.</p>
+}
 
 

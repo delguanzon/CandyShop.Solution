@@ -15,10 +15,10 @@
 <hr />
 
 <div>
-  <h5>Treats under this Treat Profile:</h5>
+  <h5>Flavors assigned for the Treat:</h5>
   @if(Model.JoinEntities.Count == 0)
   {
-    <span><em>No Treats Found under this Treat Profile</em></span>
+    <span><em>No Flavor profile for this treat.</em></span>
   }
   else
   {
@@ -26,15 +26,21 @@
       @foreach (var join in Model.JoinEntities)
       {
         <li>
-          @Html.DisplayFor(modelItem => join.Treat.Name)
+          @Html.DisplayFor(modelItem => join.Flavor.Name)
+          @Html.ActionLink("Delete", "DeleteJoin", new { joinId = join.FlavorTreatId })
         </li>
       }
     </ul>
   }
 </div>
 <hr />
-<p>@Html.ActionLink("Assign Flavors to this Treat", "AssignFlavor", new { id = Model.TreatId })</p>
-<p>@Html.ActionLink("Edit Treat Details", "Edit", new { id = Model.TreatId })</p>
-<p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
-
-
+@if(User.Identity.IsAuthenticated)
+{
+  <p>@Html.ActionLink("Assign Flavors to this Treat", "AssignFlavor", new { id = Model.TreatId })</p>
+  <p>@Html.ActionLink("Edit Treat Details", "Edit", new { id = Model.TreatId })</p>
+  <p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
+}
+else 
+{
+  <p>Login to manage Flavor Profiles</p>
+}
