@@ -1,1 +1,14 @@
-<div id="footer">Bottom div content</div>
+<div id="footer">
+<hr />
+@if (User.Identity.IsAuthenticated)
+{
+  <p>Logged In As: @User.Identity.Name - @Html.ActionLink("Log Out", "LogOff", "Account")</p>
+  
+  
+}
+else
+{
+  <p>@Html.ActionLink("Register", "Register", "Account") @Html.ActionLink("Log in", "LogIn", "Account")  </p>
+}
+
+</div>
