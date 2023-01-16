@@ -2,7 +2,7 @@
 
 #### By Yodel Guanzon <yodelguanzon@gmail.com>
 
-#### This is an independent project to test our skills in Basic Web Application using ASP .Net Core MVC.
+#### This is an independent project to test our skills in Basic Web Application using ASP .Net Core MVC with EF Core 6 Identity.
 
 ## Technologies Used
 
