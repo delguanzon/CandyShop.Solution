@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using CandyShop.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CandyShop
 {
@@ -18,12 +19,21 @@ namespace CandyShop
                                                                           ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"])
                                                                           ));
 
+
+      builder.Service.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<CandyShopContext>()
+        .AddDefaultTokenProviders();
       WebApplication app = builder.Build();
+
+
 
       // app.UseDeveloperExceptionPage();
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
+      app.UseAuthentication();
+      app.UseAuthorization();      
 
       app.MapControllerRoute(
         name: "default",

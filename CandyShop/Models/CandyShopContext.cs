@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CandyShop.Models
@@ -13,7 +14,7 @@ namespace CandyShop.Models
     // The "ProjectNameContext" class inherits from the "DbContext" class provided by Entity Framework Core.
     // The "DbContext" class provides a "DbSet" property, which we will use to communicate with our MySQL database.
     // The "ProjectNameContext" class requires a constructor method to build an instance of "DbContextOptions".
-    public class CandyShopContext : DbContext
+    public class CandyShopContext : IdentityDbContext<ApplicationUser>
     {
         public CandyShopContext (DbContextOptions<CandyShopContext> options)
             : base(options)
